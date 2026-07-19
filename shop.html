@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop | HEAVY SOUL</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
+<style>
+.shop-header{padding:120px 6% 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.shop-controls{display:flex;gap:10px;flex-wrap:wrap;}
+.search-box,.category-select{padding:13px;border:none;border-radius:8px;outline:none;font-size:15px;background:var(--card);color:#fff;border:1px solid #333;}
+.search-box{width:260px;}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">
+    <img src="assets/logo/logo-icon-160.png" alt="Heavy Soul">
+    HEAVY SOUL
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="track.html">Track Order</a>
+    <a href="policy.html">Policy</a>
+  </nav>
+  <div class="nav-icons"><a href="cart.html">🛒</a></div>
+</header>
+
+<section class="shop-header">
+  <h1>All Products</h1>
+  <div class="shop-controls">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search Products...">
+    <select id="categoryFilter" class="category-select">
+      <option value="all">All Categories</option>
+      <option value="Bike">Bike</option>
+      <option value="Street">Street</option>
+    </select>
+  </div>
+</section>
+
+<section>
+  <div class="products" id="shopProducts" style="padding:0 6% 80px;"></div>
+</section>
+
+<script src="js/products.js"></script>
+<script>
+const grid = document.getElementById("shopProducts");
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+
+function renderCard(product){
+  return `
+    <div class="card">
+      ${product.badge ? `<span class="badge-chip">${product.badge}</span>` : ""}
+      <a href="product.html?id=${product.id}"><img src="${product.image}" alt="${product.name}"></a>
+      <div class="card-content">
+        <div class="card-title">${product.name}</div>
+        <div class="price">₹${product.price}</div>
+        <a href="product.html?id=${product.id}" class="buy-btn">View Details</a>
+      </div>
+    </div>
+  `;
+}
+
+function renderProducts(list){
+  grid.innerHTML = list.length ? list.map(renderCard).join("") : `<p style="grid-column:1/-1;text-align:center;color:#888;">No products found.</p>`;
+}
+
+function filterProducts(){
+  const keyword = searchInput.value.toLowerCase();
+  const category = categoryFilter.value;
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(keyword) &&
+    (category === "all" || p.category === category)
+  );
+  renderProducts(filtered);
+}
+
+// Pre-select category from URL (?category=Bike) coming from homepage collection links
+const urlCategory = new URLSearchParams(window.location.search).get("category");
+if (urlCategory) categoryFilter.value = urlCategory;
+
+searchInput.addEventListener("keyup", filterProducts);
+categoryFilter.addEventListener("change", filterProducts);
+
+filterProducts();
+</script>
+
+<a href="https://wa.me/919339909978?text=Hi%20HEAVY%20SOUL%2C%20I%20need%20some%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.68 4.523 1.857 6.36L4 29l7.86-1.833A11.93 11.93 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.75c-1.99 0-3.86-.56-5.44-1.53l-.39-.23-4.66 1.09 1.11-4.54-.25-.4A9.71 9.71 0 0 1 6.25 15c0-5.38 4.37-9.75 9.75-9.75S25.75 9.62 25.75 15 21.38 24.75 16 24.75zm5.34-7.29c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.14 4.99 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
+</a>
+
+</body>
+</html>

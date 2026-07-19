@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order | HEAVY SOUL</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
+<style>
+.track-container{max-width:600px;margin:130px auto 70px;padding:0 20px;}
+.track-container h1{
+  font-family:'Anton',Arial,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:1px;
+  font-size:36px;text-align:center;margin-bottom:10px;background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.track-form{display:flex;gap:10px;margin:26px 0 32px;flex-wrap:wrap;}
+.track-form input{flex:1;padding:14px;border-radius:8px;border:1px solid #333;background:var(--card);color:#fff;min-width:180px;font-family:inherit;}
+.track-form input:focus{outline:2px solid var(--orange);}
+.track-form button{padding:14px 26px;background:var(--grad);border:none;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;}
+.track-msg{color:#999;text-align:center;padding:20px 0;}
+.track-msg.error{color:#ff6666;}
+.track-card{background:var(--card);border-radius:14px;padding:26px;border:1px solid rgba(255,255,255,.06);}
+.track-order-id{margin-bottom:18px;color:#ccc;font-size:15px;}
+.track-live-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(245,148,10,.12);border:1px solid rgba(245,148,10,.35);color:var(--orange);font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:20px;}
+.track-live-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:trackPulseDot 1.4s ease-in-out infinite;}
+.track-customer{background:var(--card-2);border-radius:10px;padding:16px 18px;margin-bottom:22px;border:1px solid rgba(255,255,255,.05);}
+.track-customer p{color:#aaa;font-size:14px;line-height:1.9;margin:0;}
+.track-customer p b{color:#fff;font-weight:600;}
+.track-timeline{display:flex;flex-direction:column;padding-left:6px;}
+.track-step{display:flex;align-items:center;gap:14px;padding:10px 0;position:relative;}
+.track-step .dot{width:26px;height:26px;border-radius:50%;background:#1c1c1c;border:2px solid #444;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#666;z-index:1;box-sizing:border-box;}
+.track-step.done .dot{background:var(--grad);border-color:transparent;color:#fff;}
+.track-step.current .dot{animation:trackPulseRing 1.6s ease-out infinite;}
+.track-step .label{color:#888;font-weight:600;}
+.track-step.done .label{color:#fff;}
+.track-step.current .label{color:var(--orange);}
+.track-step:not(:last-child)::after{content:"";position:absolute;left:12px;top:30px;width:2px;height:calc(100% - 4px);background:#333;}
+.track-step.done:not(:last-child)::after{background:var(--orange);}
+.track-link-btn{display:block;text-align:center;margin-top:22px;}
+@keyframes trackPulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(.8);}}
+@keyframes trackPulseRing{0%{box-shadow:0 0 0 0 rgba(245,148,10,.55);}70%{box-shadow:0 0 0 10px rgba(245,148,10,0);}100%{box-shadow:0 0 0 0 rgba(245,148,10,0);}}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">
+    <img src="assets/logo/logo-icon-160.png" alt="Heavy Soul">
+    HEAVY SOUL
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="track.html">Track Order</a>
+    <a href="policy.html">Policy</a>
+  </nav>
+  <div class="nav-icons"><a href="cart.html">🛒</a></div>
+</header>
+
+<div class="track-container">
+  <h1>Track Your Order</h1>
+  <p class="policy-sub" style="text-align:center;color:#999;">Enter your Order ID to check the latest status</p>
+
+  <form id="trackForm" class="track-form">
+    <input type="text" id="orderIdInput" placeholder="e.g. HS-20260719-042" required>
+    <button type="submit">Track</button>
+  </form>
+
+  <div id="trackResult"></div>
+</div>
+
+<script src="js/track.js"></script>
+
+<a href="https://wa.me/919339909978?text=Hi%20HEAVY%20SOUL%2C%20I%20need%20some%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.68 4.523 1.857 6.36L4 29l7.86-1.833A11.93 11.93 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.75c-1.99 0-3.86-.56-5.44-1.53l-.39-.23-4.66 1.09 1.11-4.54-.25-.4A9.71 9.71 0 0 1 6.25 15c0-5.38 4.37-9.75 9.75-9.75S25.75 9.62 25.75 15 21.38 24.75 16 24.75zm5.34-7.29c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.14 4.99 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
+</a>
+
+</body>
+</html>
