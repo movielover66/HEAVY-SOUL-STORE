@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | Heavy Soul</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Global Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #ffffff; color: #000000; padding-bottom: 80px; }
+        
+        /* 1. Top Navigation */
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #eeeeee; position: sticky; top: 0; background: #ffffff; z-index: 100; }
+        .top-nav i { font-size: 1.2rem; cursor: pointer; color: #000; }
+        .top-nav .logo { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* 2. User Profile Header */
+        .profile-header { padding: 30px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eeeeee; background-color: #f9f9f9; }
+        .profile-avatar { width: 60px; height: 60px; background-color: #000000; color: #ffffff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 900; }
+        .profile-info { flex-grow: 1; }
+        .profile-name { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 3px; }
+        .profile-email { font-size: 0.85rem; color: #666666; font-weight: 600; }
+        .edit-btn { color: #000000; font-size: 1.2rem; cursor: pointer; padding: 5px; }
+
+        /* 3. Account Menu Options */
+        .account-menu { padding: 0 20px; }
+        .menu-item { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #eeeeee; text-decoration: none; color: #000000; cursor: pointer; transition: background-color 0.2s; }
+        .menu-item:last-child { border-bottom: none; }
+        
+        .menu-item-left { display: flex; align-items: center; gap: 15px; }
+        .menu-icon { width: 35px; height: 35px; background-color: #f5f5f5; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #000000; font-size: 1rem; }
+        .menu-text { font-size: 0.95rem; font-weight: 700; }
+        
+        .menu-arrow { color: #cccccc; font-size: 1rem; }
+        
+        /* WhatsApp Support Highlight */
+        .whatsapp-menu .menu-icon { background-color: #e8f5e9; color: #25D366; }
+
+        /* Logout Button */
+        .logout-container { padding: 30px 20px; }
+        .btn-logout { width: 100%; padding: 15px; background-color: #ffffff; color: #d32f2f; font-weight: 900; font-size: 0.9rem; text-transform: uppercase; border: 1px solid #d32f2f; border-radius: 3px; cursor: pointer; letter-spacing: 0.5px; transition: 0.2s; }
+        .btn-logout:hover { background-color: #ffebee; }
+
+        /* 4. Bottom Navigation (Sticky) */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #ffffff; border-top: 1px solid #eeeeee; display: flex; justify-content: space-around; padding: 12px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: #999999; text-decoration: none; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 5px; font-weight: 600; }
+        .nav-item.active { color: #000000; }
+        .nav-item i { font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <i class="fa-solid fa-arrow-left" onclick="window.history.back()"></i>
+        <div class="logo">HEAVY SOUL</div>
+        <i class="fa-solid fa-gear"></i>
+    </nav>
+
+    <!-- User Profile Header -->
+    <div class="profile-header">
+        <div class="profile-avatar">HS</div>
+        <div class="profile-info">
+            <div class="profile-name">Heavy Souler</div>
+            <div class="profile-email">customer@heavysoul.com</div>
+        </div>
+        <i class="fa-regular fa-pen-to-square edit-btn" title="Edit Profile"></i>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu">
+        
+        <a href="order-tracking.html" class="menu-item">
+            <div class="menu-item-left">
+                <div class="menu-icon"><i class="fa-solid fa-box"></i></div>
+                <div class="menu-text">My Orders</div>
+            </div>
+            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+        </a>
+
+        <a href="wishlist.html" class="menu-item">
+            <div class="menu-item-left">
+                <div class="menu-icon"><i class="fa-regular fa-heart"></i></div>
+                <div class="menu-text">Wishlist</div>
+            </div>
+            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+        </a>
+
+        <a href="checkout.html" class="menu-item">
+            <div class="menu-item-left">
+                <div class="menu-icon"><i class="fa-regular fa-map"></i></div>
+                <div class="menu-text">Saved Addresses</div>
+            </div>
+            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+        </a>
+
+        <a href="https://wa.me/919339909978" target="_blank" class="menu-item whatsapp-menu">
+            <div class="menu-item-left">
+                <div class="menu-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="menu-text">Need Help? (WhatsApp)</div>
+            </div>
+            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+        </a>
+
+    </div>
+
+    <!-- Logout Button -->
+    <div class="logout-container">
+        <button class="btn-logout" onclick="window.location.href='login.html'">LOG OUT</button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="nav-item">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Shop</span>
+        </a>
+        <a href="wishlist.html" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="account.html" class="nav-item active"> <!-- Account is Active -->
+            <i class="fa-regular fa-user"></i>
+            <span>Account</span>
+        </a>
+        <a href="cart.html" class="nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+    </nav>
+
+<script src="js/config.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script><script src="js/auth.js"></script><script src="js/orders.js"></script><script src="js/backend-account.js"></script></body>
+</html>

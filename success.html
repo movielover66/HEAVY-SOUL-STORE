@@ -3,53 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Successful | HEAVY SOUL</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="Your Heavy Soul order is confirmed — thank you for shopping with us.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="Order confirmed — Heavy Soul">
+<meta property="og:description" content="Your Heavy Soul order is confirmed — thank you for shopping with us.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/success.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Order confirmed — Heavy Soul">
+<meta name="twitter:description" content="Your Heavy Soul order is confirmed — thank you for shopping with us.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>Order confirmed — Heavy Soul</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#000;color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;}
-.success-box{width:90%;max-width:550px;background:#111;padding:40px;border-radius:20px;text-align:center;box-shadow:0 0 30px rgba(255,102,0,.15);}
-.check{width:100px;height:100px;margin:auto;border-radius:50%;background:var(--orange);display:flex;justify-content:center;align-items:center;font-size:50px;font-weight:bold;}
-.success-box h1{margin:25px 0 15px;font-size:32px;}
-.success-box p{color:#bbb;line-height:1.8;margin-bottom:28px;}
-.btn{display:inline-block;padding:15px 35px;background:var(--orange);color:#fff;border-radius:10px;font-size:17px;font-weight:bold;}
-.btn:hover{opacity:.9;}
-</style>
 </head>
 <body>
 
-<div class="success-box">
-  <div class="check">✓</div>
-  <h1>Order Submitted</h1>
-  <p id="orderIdLine" style="display:none;"></p>
-  <p>
-    Thank you for shopping with <b>HEAVY SOUL</b>.<br><br>
-    Your order request has been received successfully. We will verify your UPI payment and contact you shortly on your WhatsApp number.
-  </p>
-  <a href="index.html" class="btn">Continue Shopping</a>
-  <a href="#" id="trackBtn" class="btn" style="background:transparent;border:1px solid var(--orange);margin-top:12px;display:none;">Track This Order</a>
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="brand">Heavy Soul<small>Est. 2026</small></a>
+    <div></div>
+    <div></div>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="empty-state">
+    <p class="eyebrow">Order submitted</p>
+    <h2 style="margin: 14px 0;">Thank you — we've got your order.</h2>
+    <p id="orderIdLine">Your order reference is being generated.</p>
+    <p style="max-width:440px; margin: 0 auto 30px;">We've opened WhatsApp with your order details — please send that message if you haven't already, so we can confirm and start processing.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="shop.html" class="btn outline">Continue shopping</a>
+      <a href="track.html" class="btn" id="trackLink">Track this order</a>
+    </div>
+  </div>
 </div>
 
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Heavy Soul. All rights reserved.</span>
+      <span>Prices in INR · Ships across India</span>
+      <span>Trade Reg. No. 3549 (Saptagram GP, Hooghly)</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/analytics.js"></script>
 <script>
-const orderId = new URLSearchParams(window.location.search).get("order");
-if (orderId) {
-  const orderIdLine = document.getElementById("orderIdLine");
-  orderIdLine.innerHTML = `Order ID: <b style="color:var(--orange)">${orderId}</b> — please save this for tracking.`;
-  orderIdLine.style.display = "block";
-  const trackBtn = document.getElementById("trackBtn");
-  trackBtn.href = `track.html?order=${encodeURIComponent(orderId)}`;
-  trackBtn.style.display = "inline-block";
-}
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get("order");
+  const orderValue = Number(params.get("value")) || 0;
+  if (orderId) {
+    document.getElementById("orderIdLine").innerHTML = `Order ID: <b style="font-family:var(--mono); color:var(--accent);">${escapeHtml(orderId)}</b>`;
+    document.getElementById("trackLink").href = `track.html?order=${encodeURIComponent(orderId)}`;
+    if (window.trackEvent) {
+      trackEvent("Purchase", { order_id: orderId, value: orderValue, currency: "INR" });
+    }
+  }
 </script>
-
-
-<a href="https://wa.me/919339909978?text=Hi%20HEAVY%20SOUL%2C%20I%20need%20some%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.68 4.523 1.857 6.36L4 29l7.86-1.833A11.93 11.93 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.75c-1.99 0-3.86-.56-5.44-1.53l-.39-.23-4.66 1.09 1.11-4.54-.25-.4A9.71 9.71 0 0 1 6.25 15c0-5.38 4.37-9.75 9.75-9.75S25.75 9.62 25.75 15 21.38 24.75 16 24.75zm5.34-7.29c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.14 4.99 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
-</a>
-
 </body>
 </html>

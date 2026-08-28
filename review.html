@@ -167,29 +167,9 @@
     <!-- Product Info Layout -->
     <section class="product-info">
         
-        <!-- 1. Color Selector Swatches -->
-        <div class="color-section">
-            <div class="color-header">
-                Selected Color: <span id="colorNameDisplay" style="font-weight: 800; text-transform: capitalize;">Brown</span>
-            </div>
-            <div class="color-grid">
-                <div class="color-thumb" onclick="selectColor('Black', ['https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=150&q=80" alt="Black">
-                </div>
-                <div class="color-thumb" onclick="selectColor('Dark Grey', ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=150&q=80" alt="Dark Grey">
-                </div>
-                <div class="color-thumb active" onclick="selectColor('Brown', ['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=150&q=80" alt="Brown">
-                </div>
-                <div class="color-thumb" onclick="selectColor('Beige', ['https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=150&q=80" alt="Beige">
-                </div>
-                <div class="color-thumb" onclick="selectColor('Light Blue', ['https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=150&q=80" alt="Light Blue">
-                </div>
-            </div>
-        </div>
+        <!-- Color variants removed: products.js has no per-color image data yet.
+             Add a `colors` array to a product in products.js and re-introduce
+             this section if/when you want real color variants. -->
 
         <!-- 2. Size Selector -->
         <div class="size-section">
@@ -208,7 +188,7 @@
 
         <!-- 3. Brand & Title -->
         <div class="brand-store">HEAVY SOUL <span>Official Store</span></div>
-        <h1 class="product-title">Dark Reflection Heavyweight Streetwear T-Shirt</h1>
+        <h1 class="product-title" id="productTitle">Loading...</h1>
 
         <!-- Rating -->
         <div class="product-rating">
@@ -220,10 +200,8 @@
         <!-- 4. Pricing & Deal Section -->
         <div>
             <div class="hot-deal-badge">Exclusive Drop</div>
-            <div class="price-container">
-                <span class="discount-pct">46% OFF</span>
-                <span class="original-price">₹1,499</span>
-                <span class="current-price">₹799</span>
+            <div class="price-container" id="priceContainer">
+                <!-- Filled by renderProduct() from real product data -->
             </div>
         </div>
 
@@ -241,9 +219,7 @@
                 <li>High Density Premium Print</li>
                 <li>Pre-Shrunk Bio-Washed Fabric</li>
             </ul>
-            <p class="product-desc">
-                Crafted for absolute comfort and bold expression. Heavy Soul's "Dark Reflection" oversized tee is built with heavy-duty premium cotton that maintains its structure and offers an effortless streetwear silhouette.
-            </p>
+            <p class="product-desc" id="productDesc">Loading...</p>
         </div>
 
         <!-- Customer Review Section -->
@@ -265,21 +241,8 @@
         <!-- Related Category T-Shirts Section -->
         <div class="related-section">
             <div class="details-title">You May Also Like</div>
-            <div class="product-grid">
-                <a href="product.html" class="product-card">
-                    <div class="image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=400&q=80" alt="Lost Reality">
-                    </div>
-                    <div class="product-title-sm">Lost Reality</div>
-                    <div class="product-price-sm">₹799</div>
-                </a>
-                <a href="product.html" class="product-card">
-                    <div class="image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=400&q=80" alt="Neon Ghost">
-                    </div>
-                    <div class="product-title-sm">Neon Ghost</div>
-                    <div class="product-price-sm">₹799</div>
-                </a>
+            <div class="product-grid" id="relatedProducts">
+                <!-- Filled by renderProduct() from real product data -->
             </div>
         </div>
     </section>
@@ -300,8 +263,8 @@
             <div class="variant-product-info">
                 <img id="modalProductImg" src="" alt="Product">
                 <div>
-                    <div class="modal-prod-title">Dark Reflection Heavyweight T-Shirt</div>
-                    <div class="modal-prod-price">₹1,499 <span style="color:#000; font-weight:900; font-size:1rem;">₹799</span></div>
+                    <div class="modal-prod-title" id="modalProdTitle">Loading...</div>
+                    <div class="modal-prod-price" id="modalProdPrice"></div>
                 </div>
             </div>
             <div class="modal-size-header">Select Size</div>
@@ -345,20 +308,102 @@
     </div>
 
     <!-- Floating WhatsApp Support Widget -->
-    <a href="https://wa.me/919339909978?text=Hello%20Heavy%20Soul,%20I%20need%20help%20with%20Dark%20Reflection%20T-Shirt." class="whatsapp-float" target="_blank">
+    <a href="#" id="whatsappFloat" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <!-- Real site config + product catalog, loaded BEFORE the inline script
+         below so PRODUCTS is ready when renderProduct() runs. -->
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+
     <!-- JavaScript -->
     <script>
-        let currentImages = [
-            'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80'
-        ];
+        // ---- Resolve which product this page is showing, from ?id= in the URL ----
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedId = Number(urlParams.get('id')) || 1;
+        const catalog = (typeof PRODUCTS !== "undefined" && PRODUCTS.length) ? PRODUCTS : FALLBACK_PRODUCTS;
+        const currentProduct = catalog.find(p => p.id === requestedId) || catalog[0];
+
+        let currentImages = (currentProduct.images && currentProduct.images.length)
+            ? currentProduct.images
+            : [currentProduct.image];
         let currentImgIndex = 0;
         let selectedSize = null;
         let pendingAction = '';
+
+        function renderProduct() {
+            document.title = currentProduct.name + " | Heavy Soul";
+            document.getElementById('productTitle').innerText = currentProduct.name;
+
+            // Main image + carousel dots
+            document.getElementById('mainProductImg').src = currentImages[0];
+            document.getElementById('mainProductImg').alt = currentProduct.name;
+            document.getElementById('carouselDots').innerHTML = currentImages.map((img, idx) =>
+                `<div class="dot${idx === 0 ? ' active' : ''}" onclick="goToImage(${idx})"></div>`
+            ).join('');
+
+            // Price
+            const priceContainer = document.getElementById('priceContainer');
+            if (currentProduct.compareAt) {
+                const pct = Math.round((1 - currentProduct.price / currentProduct.compareAt) * 100);
+                priceContainer.innerHTML = `
+                    <span class="discount-pct">${pct}% OFF</span>
+                    <span class="original-price">₹${currentProduct.compareAt}</span>
+                    <span class="current-price">₹${currentProduct.price}</span>
+                `;
+            } else {
+                priceContainer.innerHTML = `<span class="current-price">₹${currentProduct.price}</span>`;
+            }
+
+            // Sizes (page + modal), driven by this product's real sizes
+            const sizeList = currentProduct.sizes && currentProduct.sizes.length
+                ? currentProduct.sizes
+                : ['S', 'M', 'L', 'XL', 'XXL'];
+            document.getElementById('sizeSelector').innerHTML = sizeList.map(s =>
+                `<button class="size-btn" onclick="selectPageSize('${s}', this)">${s}</button>`
+            ).join('');
+            document.getElementById('modalSizeSelector').innerHTML = sizeList.map(s =>
+                `<button class="modal-size-btn" onclick="selectModalSize('${s}', this)">${s}</button>`
+            ).join('');
+
+            // Description
+            document.getElementById('productDesc').innerText = currentProduct.description || '';
+
+            // Variant modal preview
+            document.getElementById('modalProdTitle').innerText = currentProduct.name;
+            document.getElementById('modalProdPrice').innerHTML = currentProduct.compareAt
+                ? `₹${currentProduct.compareAt} <span style="color:#000; font-weight:900; font-size:1rem;">₹${currentProduct.price}</span>`
+                : `₹${currentProduct.price}`;
+
+            // WhatsApp float — uses real WhatsApp number from SITE_CONFIG + this product's name
+            const waNumber = (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG.WHATSAPP_NUMBER) || '919339909978';
+            document.getElementById('whatsappFloat').href =
+                `https://wa.me/${waNumber}?text=${encodeURIComponent('Hello Heavy Soul, I need help with ' + currentProduct.name + '.')}`;
+
+            // Related products — 2 other real products from the catalog
+            const related = catalog.filter(p => p.id !== currentProduct.id).slice(0, 2);
+            document.getElementById('relatedProducts').innerHTML = related.map(p => `
+                <a href="product.html?id=${p.id}" class="product-card">
+                    <div class="image-placeholder">
+                        <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}">
+                    </div>
+                    <div class="product-title-sm">${escapeHtml(p.name)}</div>
+                    <div class="product-price-sm">₹${p.price}</div>
+                </a>
+            `).join('');
+
+            // Reflect existing wishlist state on the heart icon
+            const wishlist = JSON.parse(localStorage.getItem('heavySoulWishlist')) || [];
+            const heartIcon = document.querySelector('.heart-icon');
+            const inWishlist = wishlist.some(item => item.id === currentProduct.id);
+            heartIcon.classList.toggle('fa-solid', inWishlist);
+            heartIcon.classList.toggle('fa-regular', !inWishlist);
+        }
+
+        renderProduct();
+        // Re-render if the live catalog (from Apps Script) finishes loading after us.
+        window.addEventListener("hs:productsUpdated", renderProduct);
 
         function updateMainImage() {
             const imgElement = document.getElementById('mainProductImg');
@@ -402,19 +447,6 @@
                 currentImgIndex = (currentImgIndex - 1 + currentImages.length) % currentImages.length;
                 updateMainImage();
             }
-        }
-
-        let selectedColor = 'Brown';
-
-        function selectColor(colorName, imageArray, element) {
-            selectedColor = colorName;
-            document.getElementById('colorNameDisplay').innerText = colorName;
-            currentImages = imageArray;
-            currentImgIndex = 0;
-            updateMainImage();
-            
-            document.querySelectorAll('.color-thumb').forEach(thumb => thumb.classList.remove('active'));
-            element.classList.add('active');
         }
 
         function selectPageSize(size, element) {
@@ -462,7 +494,7 @@
             closeVariantModal();
             if (pendingAction === 'cart') {
                 executeAddToCart();
-                alert(`Added "Dark Reflection" (${selectedColor} / Size: ${selectedSize}) to cart!`);
+                alert(`Added "${currentProduct.name}" (Size: ${selectedSize}) to cart!`);
             } else if (pendingAction === 'buy') {
                 executeAddToCart();
                 triggerPageTransition('checkout.html');
@@ -475,7 +507,7 @@
                 return;
             }
             executeAddToCart();
-            alert(`Added "Dark Reflection" (${selectedColor} / Size: ${selectedSize}) to cart!`);
+            alert(`Added "${currentProduct.name}" (Size: ${selectedSize}) to cart!`);
         }
 
         function buyNow() {
@@ -490,19 +522,18 @@
         function executeAddToCart() {
             let cart = JSON.parse(localStorage.getItem('heavySoulCart')) || [];
             let activeImg = currentImages[currentImgIndex];
-            
+
             let product = {
-                id: 1,
-                name: "Dark Reflection",
-                price: 799,
-                color: selectedColor,
+                id: currentProduct.id,
+                name: currentProduct.name,
+                price: currentProduct.price,
                 size: selectedSize,
                 image: activeImg,
                 quantity: 1,
-                orderType: "collection"
+                orderType: currentProduct.orderType || "collection"
             };
 
-            let existingIndex = cart.findIndex(item => item.name === product.name && item.size === product.size && item.color === product.color);
+            let existingIndex = cart.findIndex(item => item.id === product.id && item.size === product.size);
             if (existingIndex > -1) {
                 cart[existingIndex].quantity += 1;
             } else {
@@ -510,6 +541,8 @@
             }
 
             localStorage.setItem('heavySoulCart', JSON.stringify(cart));
+            // Let nav.js / any listening page refresh its cart badge immediately.
+            window.dispatchEvent(new Event('hs:cartUpdated'));
         }
 
         function openSizeGuide() {
@@ -532,24 +565,25 @@
         function toggleWishlist(element) {
             element.classList.toggle('fa-solid');
             element.classList.toggle('fa-regular');
-            
+
             let wishlist = JSON.parse(localStorage.getItem('heavySoulWishlist')) || [];
             let activeImg = currentImages[currentImgIndex];
             let product = {
-                name: "Dark Reflection",
-                price: "₹799",
-                color: selectedColor,
+                id: currentProduct.id,
+                name: currentProduct.name,
+                price: currentProduct.price,
                 image: activeImg
             };
 
             if (element.classList.contains('fa-solid')) {
-                wishlist.push(product);
+                if (!wishlist.some(item => item.id === product.id)) wishlist.push(product);
                 alert("Added to Wishlist!");
             } else {
-                wishlist = wishlist.filter(item => item.name !== product.name);
+                wishlist = wishlist.filter(item => item.id !== product.id);
                 alert("Removed from Wishlist!");
             }
             localStorage.setItem('heavySoulWishlist', JSON.stringify(wishlist));
+            window.dispatchEvent(new Event('hs:wishlistUpdated'));
         }
     </script>
 <script src="js/config.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script src="js/commerce.js"></script></body>

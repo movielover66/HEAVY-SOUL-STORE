@@ -1,93 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delivery & Return Policy | HEAVY SOUL</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Policies | Heavy Soul</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Global Settings */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #ffffff; color: #000000; padding-bottom: 50px; }
+        
+        /* Top Navigation */
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #eeeeee; position: sticky; top: 0; background: #ffffff; z-index: 100; }
+        .top-nav i { font-size: 1.2rem; cursor: pointer; color: #000; }
+        .top-nav .logo { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* Content Container */
+        .content-container { padding: 30px 20px; max-width: 800px; margin: 0 auto; }
+        
+        h1 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 0.5px; border-bottom: 2px solid #000000; padding-bottom: 10px; }
+        
+        .policy-section { margin-bottom: 30px; }
+        h2 { font-size: 1rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: #111111; }
+        p { font-size: 0.9rem; line-height: 1.6; color: #555555; margin-bottom: 10px; font-weight: 500; }
+        
+        ul { margin-left: 20px; margin-bottom: 10px; }
+        li { font-size: 0.9rem; line-height: 1.6; color: #555555; font-weight: 500; }
+    </style>
 </head>
 <body>
 
-<header class="navbar">
-  <a href="index.html" class="logo">
-    <img src="assets/logo/logo-icon-160.png" alt="Heavy Soul">
-    HEAVY SOUL
-  </a>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="policy.html">Policy</a>
-  </nav>
-  <div class="nav-icons"><a href="cart.html">🛒</a></div>
-</header>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <i class="fa-solid fa-arrow-left" onclick="window.history.back()"></i>
+        <div class="logo">HEAVY SOUL</div>
+        <i class="fa-solid fa-cart-shopping" onclick="window.location.href='cart.html'"></i>
+    </nav>
 
-<div class="policy-container">
-  <h1>Delivery &amp; Return Policy</h1>
-  <p class="policy-sub">Here's everything you need to know about your order</p>
+    <!-- Main Content -->
+    <div class="content-container">
+        <h1>About Us & Store Policies</h1>
+        
+        <!-- About Us -->
+        <div class="policy-section">
+            <h2>Our Story, Vision & Mission</h2>
+            <p>Heavy Soul is built for those who wear their identity with pride. We craft oversized, bold, and fearless streetwear using <strong>240 GSM Premium Quality Cotton</strong> to ensure ultimate comfort and durability.</p>
+        </div>
 
-  <div class="policy-block">
-    <h3>💳 Advance Payment</h3>
-    <ul>
-      <li><b>Regular Orders:</b> ₹150 advance per item required to confirm your order (COD).</li>
-      <li><b>Custom T-Shirts:</b> 50% advance required (COD).</li>
-      <li>Choosing Prepaid means the full order amount is paid upfront.</li>
-    </ul>
-  </div>
+        <!-- Shipping Policy -->
+        <div class="policy-section">
+            <h2>Shipping Policy</h2>
+            <p><strong>Delivery Time:</strong> Fast delivery within 3-5 business days across India.</p>
+            <p>Standard shipping charges apply unless free shipping thresholds are met.</p>
+        </div>
 
-  <div class="policy-block">
-    <h3>🚚 Delivery</h3>
-    <ul>
-      <li>Orders are delivered within <b>3–8 business days</b>, depending on your location.</li>
-      <li>Please answer the delivery partner's call to ensure smooth delivery.</li>
-    </ul>
-  </div>
+        <!-- Return & Exchange Policy -->
+        <div class="policy-section">
+            <h2>Return & Exchange Policy</h2>
+            <p>We offer <strong>Easy Returns in 7 Days</strong>. If you face any sizing issues (such as M size chest 42 inch & length 28 inch mismatch) or receive a defective product, you can request a hassle-free exchange or return directly through our support or WhatsApp.</p>
+        </div>
 
-  <div class="policy-block">
-    <h3>📦 Exchange / Wrong Product</h3>
-    <ul>
-      <li>Report any issue within <b>24 hours</b> of delivery.</li>
-      <li>A <b>360° unboxing video</b> is mandatory — start recording before opening the package and clearly show all sides of the parcel and the product.</li>
-      <li>Without a proper unboxing video, exchange or refund requests cannot be accepted.</li>
-    </ul>
-  </div>
+        <!-- Cancellation Policy -->
+        <div class="policy-section">
+            <h2>Cancellation Policy</h2>
+            <p>Orders can be cancelled within <strong>12 hours</strong> of placement before they are processed or shipped out.</p>
+        </div>
 
-  <div class="policy-block">
-    <h3>📏 Size Policy</h3>
-    <ul>
-      <li>No exchange is available for size issues, since customers select their own size using our Size Guide.</li>
-      <li>Please check the Size Guide on the product page carefully before ordering.</li>
-    </ul>
-  </div>
+        <!-- Privacy Policy -->
+        <div class="policy-section">
+            <h2>Privacy Policy</h2>
+            <p>Your data is <strong>100% safe</strong> with us. We respect your privacy and only use your information strictly for order fulfillment and delivery updates.</p>
+        </div>
 
-  <div class="policy-contact">
-    <p style="color:#999;margin-bottom:16px;">Need help with anything?</p>
-    <a href="https://wa.me/919339909978?text=Hi%20HEAVY%20SOUL%2C%20I%20have%20a%20question%20about%20my%20order." class="hero-btn" target="_blank" rel="noopener">WhatsApp Us</a>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-content">
-    <img src="assets/logo/logo-full-300.png" alt="Heavy Soul" class="footer-logo">
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="cart.html">Cart</a>
-      <a href="track.html">Track Order</a>
-      <a href="policy.html">Policy</a>
+        <!-- Customer Support -->
+        <div class="policy-section">
+            <h2>Customer Support</h2>
+            <p>We're always here to help you! Reach out to us anytime via our WhatsApp Support widget for instant assistance.</p>
+        </div>
     </div>
-    <p class="copyright">© 2026 HEAVY SOUL. All Rights Reserved.</p>
-  </div>
-</footer>
-
-
-<a href="https://wa.me/919339909978?text=Hi%20HEAVY%20SOUL%2C%20I%20need%20some%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.68 4.523 1.857 6.36L4 29l7.86-1.833A11.93 11.93 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.75c-1.99 0-3.86-.56-5.44-1.53l-.39-.23-4.66 1.09 1.11-4.54-.25-.4A9.71 9.71 0 0 1 6.25 15c0-5.38 4.37-9.75 9.75-9.75S25.75 9.62 25.75 15 21.38 24.75 16 24.75zm5.34-7.29c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.14 4.99 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
-</a>
 
 </body>
 </html>

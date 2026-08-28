@@ -1,40 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping Cart | HEAVY SOUL</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="assets/logo/favicon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Heavy Soul</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Global Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #ffffff; color: #000000; padding-bottom: 90px; }
+        
+        /* 1. Top Navigation */
+        .top-nav { display: flex; align-items: center; padding: 15px 20px; border-bottom: 1px solid #eeeeee; position: sticky; top: 0; background: #ffffff; z-index: 100; gap: 15px; }
+        .top-nav i { font-size: 1.2rem; cursor: pointer; color: #000; }
+        .top-nav h1 { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 0; }
+
+        /* 2. Cart Item */
+        .cart-container { padding: 20px; }
+        .cart-item { display: flex; gap: 15px; margin-bottom: 25px; position: relative; border-bottom: 1px solid #f0f0f0; padding-bottom: 20px; }
+        .cart-item-image { width: 85px; height: 105px; background-color: #000; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+        .cart-item-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .item-title { font-size: 0.95rem; font-weight: 800; }
+        .item-variant { font-size: 0.8rem; color: #666; margin-top: 3px; }
+        .item-price { font-size: 0.95rem; font-weight: 700; margin-top: 5px; }
+        
+        /* Quantity & Delete */
+        .item-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        .qty-selector { display: flex; align-items: center; border: 1px solid #dddddd; border-radius: 3px; width: fit-content; }
+        .qty-btn { padding: 5px 12px; cursor: pointer; font-weight: 800; background: #ffffff; border: none; font-size: 1rem; }
+        .qty-val { padding: 5px 12px; font-weight: 700; font-size: 0.9rem; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; }
+        .delete-btn { color: #555555; cursor: pointer; font-size: 1.1rem; padding: 5px; background: none; border: none; }
+
+        /* 3. Price Details */
+        .price-details { border-top: 1px solid #eeeeee; padding-top: 20px; margin-bottom: 20px; }
+        .price-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 12px; font-weight: 600; color: #555; }
+        .price-row.total { font-size: 1.1rem; font-weight: 900; color: #000; border-top: 1px solid #eeeeee; padding-top: 12px; margin-top: 5px; }
+
+        /* 4. Free Shipping Banner */
+        .free-shipping-banner { background-color: #f8f8f8; border: 1px dashed #cccccc; padding: 15px; text-align: center; border-radius: 4px; margin-bottom: 25px; font-size: 0.85rem; font-weight: 700; }
+        .free-shipping-banner span { color: #d97706; }
+
+        /* 5. Action Buttons */
+        .btn { width: 100%; padding: 16px; font-weight: 900; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; border-radius: 3px; text-align: center; letter-spacing: 0.5px; display: block; text-decoration: none; }
+        .btn-checkout { background-color: #000000; color: #ffffff; border: 2px solid #000000; margin-bottom: 15px; }
+        .btn-continue { background-color: #ffffff; color: #555555; border: none; font-size: 0.8rem; text-align: center; }
+        
+        .empty-cart { text-align: center; padding: 40px 20px; color: #666; font-weight: 600; font-size: 0.95rem; }
+
+        /* 6. Bottom Navigation (Sticky) */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #ffffff; border-top: 1px solid #eeeeee; display: flex; justify-content: space-around; padding: 12px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: #999999; text-decoration: none; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 5px; font-weight: 600; }
+        .nav-item.active { color: #000000; }
+        .nav-item i { font-size: 1.2rem; }
+    </style>
 </head>
 <body>
 
-<header class="navbar">
-  <a href="index.html" class="logo">
-    <img src="assets/logo/logo-icon-160.png" alt="Heavy Soul">
-    HEAVY SOUL
-  </a>
-  <nav><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="track.html">Track Order</a><a href="policy.html">Policy</a></nav>
-</header>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <i class="fa-solid fa-arrow-left" onclick="window.location.href='index.html'"></i>
+        <h1 id="cartHeading">Your Cart (0)</h1>
+    </nav>
 
-<div class="cart-container">
-  <h1 class="cart-title">Shopping Cart</h1>
-  <div id="cartItems"></div>
-  <div class="summary">
-    <div class="total">Total : ₹0</div>
-    <a href="checkout.html" class="checkout-btn">Proceed To Checkout</a>
-  </div>
-</div>
+    <div class="cart-container" id="cartMainContainer">
+        <!-- Dynamic Cart Items Container -->
+        <div id="cartItemsList"></div>
 
-<script src="js/cart.js"></script>
+        <!-- Price Details -->
+        <div class="price-details" id="priceDetailsSection" style="display: none;">
+            <div class="price-row">
+                <span>Subtotal</span>
+                <span>₹<span id="subtotalDisplay">0</span></span>
+            </div>
+            <div class="price-row">
+                <span>Shipping</span>
+                <span>₹<span id="shippingDisplay">0</span></span>
+            </div>
+            <div class="price-row total">
+                <span>Total</span>
+                <span>₹<span id="totalDisplay">0</span></span>
+            </div>
+        </div>
 
-<a href="https://wa.me/919339909978?text=Hi%20HEAVY%20SOUL%2C%20I%20need%20some%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.68 4.523 1.857 6.36L4 29l7.86-1.833A11.93 11.93 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.75c-1.99 0-3.86-.56-5.44-1.53l-.39-.23-4.66 1.09 1.11-4.54-.25-.4A9.71 9.71 0 0 1 6.25 15c0-5.38 4.37-9.75 9.75-9.75S25.75 9.62 25.75 15 21.38 24.75 16 24.75zm5.34-7.29c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.14 4.99 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
-</a>
+        <!-- Free Shipping Banner -->
+        <div class="free-shipping-banner" id="shippingBanner" style="display: none;">
+            <!-- Will be updated dynamically -->
+        </div>
 
-</body>
+        <!-- Actions -->
+        <div id="cartActions" style="display: none;">
+            <a href="checkout.html" class="btn btn-checkout">PROCEED TO CHECKOUT</a>
+        </div>
+        <a href="shop.html" class="btn btn-continue"><i class="fa-solid fa-chevron-left"></i> CONTINUE SHOPPING</a>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="nav-item">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Shop</span>
+        </a>
+        <a href="wishlist.html" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="account.html" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>Account</span>
+        </a>
+        <a href="cart.html" class="nav-item active">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript for Dynamic Cart Logic -->
+    <script>
+        const freeShippingThreshold = 1000;
+
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('heavySoulCart')) || [];
+            let listContainer = document.getElementById('cartItemsList');
+            let priceDetails = document.getElementById('priceDetailsSection');
+            let shippingBanner = document.getElementById('shippingBanner');
+            let cartActions = document.getElementById('cartActions');
+            let cartHeading = document.getElementById('cartHeading');
+
+            // Update top header count
+            let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartHeading.innerText = `Your Cart (${totalCount})`;
+
+            if (cart.length === 0) {
+                listContainer.innerHTML = `<div class="empty-cart">Your cart is empty!<br><br></div>`;
+                priceDetails.style.display = 'none';
+                shippingBanner.style.display = 'none';
+                cartActions.style.display = 'none';
+                return;
+            }
+
+            priceDetails.style.display = 'block';
+            shippingBanner.style.display = 'block';
+            cartActions.style.display = 'block';
+
+            let html = '';
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div>
+                                <div class="item-title">${item.name}</div>
+                                <div class="item-variant">Size: ${item.size}</div>
+                                <div class="item-price">₹${item.price}</div>
+                            </div>
+                            <div class="item-actions">
+                                <div class="qty-selector">
+                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                    <div class="qty-val">${item.quantity}</div>
+                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                                </div>
+                                <button class="delete-btn" onclick="removeItem(${index})"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            listContainer.innerHTML = html;
+
+            // Update Subtotal & Total
+            document.getElementById('subtotalDisplay').innerText = subtotal;
+            let shipping = 0; // Free or flat rate logic if needed
+            let total = subtotal + shipping;
+            document.getElementById('totalDisplay').innerText = total;
+
+            // Update Free Shipping Banner
+            let difference = freeShippingThreshold - subtotal;
+            if (difference > 0) {
+                shippingBanner.innerHTML = `🎉 You are <span>₹${difference}</span> away from <br> <strong>FREE SHIPPING</strong>`;
+                shippingBanner.style.backgroundColor = '#f8f8f8';
+                shippingBanner.style.borderColor = '#cccccc';
+            } else {
+                shippingBanner.innerHTML = `✨ Congratulations! You get <br> <strong>FREE SHIPPING</strong>`;
+                shippingBanner.style.backgroundColor = '#e8f5e9';
+                shippingBanner.style.borderColor = '#4caf50';
+            }
+        }
+
+        function changeQty(index, change) {
+            let cart = JSON.parse(localStorage.getItem('heavySoulCart')) || [];
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity < 1) {
+                cart[index].quantity = 1;
+            }
+
+            localStorage.setItem('heavySoulCart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('heavySoulCart')) || [];
+            if (confirm("Are you sure you want to remove this item?")) {
+                cart.splice(index, 1);
+                localStorage.setItem('heavySoulCart', JSON.stringify(cart));
+                loadCart();
+            }
+        }
+
+        window.onload = loadCart;
+    </script>
+<script src="js/config.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script src="js/commerce.js"></script></body>
 </html>
