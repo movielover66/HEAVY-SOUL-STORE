@@ -155,7 +155,8 @@
 
     <!-- Main Product Image (Swipeable) -->
     <section class="product-image-section" id="imageSliderSection">
-        <img id="mainProductImg" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80" alt="Dark Reflection T-Shirt">
+        <!-- REPLACE WITH YOUR DEFAULT IMAGE -->
+        <img id="mainProductImg" src="YOUR_SUPABASE_IMAGE_URL/brown-front.jpg" alt="Dark Reflection T-Shirt">
         <i class="fa-regular fa-heart heart-icon" onclick="toggleWishlist(this)"></i>
         <div class="carousel-dots" id="carouselDots">
             <div class="dot active" onclick="goToImage(0)"></div>
@@ -173,20 +174,25 @@
                 Selected Color: <span id="colorNameDisplay" style="font-weight: 800; text-transform: capitalize;">Brown</span>
             </div>
             <div class="color-grid">
-                <div class="color-thumb" onclick="selectColor('Black', ['https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=150&q=80" alt="Black">
+                <!-- BLACK -->
+                <div class="color-thumb" onclick="selectColor('Black', ['YOUR_SUPABASE_IMAGE_URL/black-front.jpg', 'YOUR_SUPABASE_IMAGE_URL/black-back.jpg'], this)">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/black-thumb.jpg" alt="Black">
                 </div>
-                <div class="color-thumb" onclick="selectColor('Dark Grey', ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=150&q=80" alt="Dark Grey">
+                <!-- DARK GREY -->
+                <div class="color-thumb" onclick="selectColor('Dark Grey', ['YOUR_SUPABASE_IMAGE_URL/grey-front.jpg', 'YOUR_SUPABASE_IMAGE_URL/grey-back.jpg'], this)">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/grey-thumb.jpg" alt="Dark Grey">
                 </div>
-                <div class="color-thumb active" onclick="selectColor('Brown', ['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=150&q=80" alt="Brown">
+                <!-- BROWN (Active Default) -->
+                <div class="color-thumb active" onclick="selectColor('Brown', ['YOUR_SUPABASE_IMAGE_URL/brown-front.jpg', 'YOUR_SUPABASE_IMAGE_URL/brown-back.jpg'], this)">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/brown-thumb.jpg" alt="Brown">
                 </div>
-                <div class="color-thumb" onclick="selectColor('Beige', ['https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=150&q=80" alt="Beige">
+                <!-- BEIGE -->
+                <div class="color-thumb" onclick="selectColor('Beige', ['YOUR_SUPABASE_IMAGE_URL/beige-front.jpg', 'YOUR_SUPABASE_IMAGE_URL/beige-back.jpg'], this)">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/beige-thumb.jpg" alt="Beige">
                 </div>
-                <div class="color-thumb" onclick="selectColor('Light Blue', ['https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'], this)">
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=150&q=80" alt="Light Blue">
+                <!-- LIGHT BLUE -->
+                <div class="color-thumb" onclick="selectColor('Light Blue', ['YOUR_SUPABASE_IMAGE_URL/blue-front.jpg', 'YOUR_SUPABASE_IMAGE_URL/blue-back.jpg'], this)">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/blue-thumb.jpg" alt="Light Blue">
                 </div>
             </div>
         </div>
@@ -251,13 +257,14 @@
             <div class="details-title">Customer Reviews (Photo & Video)</div>
             <div class="review-cards-scroll">
                 <div class="review-media-card">
-                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=300&q=80" alt="Review 1">
+                    <!-- REPLACE WITH REVIEW IMAGES -->
+                    <img src="YOUR_SUPABASE_IMAGE_URL/review-1.jpg" alt="Review 1">
                 </div>
                 <div class="review-media-card">
-                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" alt="Review 2">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/review-2.jpg" alt="Review 2">
                 </div>
                 <div class="review-media-card">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=300&q=80" alt="Review 3">
+                    <img src="YOUR_SUPABASE_IMAGE_URL/review-3.jpg" alt="Review 3">
                 </div>
             </div>
         </div>
@@ -268,14 +275,14 @@
             <div class="product-grid">
                 <a href="product.html" class="product-card">
                     <div class="image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=400&q=80" alt="Lost Reality">
+                        <img src="YOUR_SUPABASE_IMAGE_URL/lost-reality-thumb.jpg" alt="Lost Reality">
                     </div>
                     <div class="product-title-sm">Lost Reality</div>
                     <div class="product-price-sm">₹799</div>
                 </a>
                 <a href="product.html" class="product-card">
                     <div class="image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=400&q=80" alt="Neon Ghost">
+                        <img src="YOUR_SUPABASE_IMAGE_URL/neon-ghost-thumb.jpg" alt="Neon Ghost">
                     </div>
                     <div class="product-title-sm">Neon Ghost</div>
                     <div class="product-price-sm">₹799</div>
@@ -351,10 +358,11 @@
 
     <!-- JavaScript -->
     <script>
+        // REPLACE THESE WITH YOUR DEFAULT IMAGES
         let currentImages = [
-            'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80'
+            'YOUR_SUPABASE_IMAGE_URL/brown-front.jpg',
+            'YOUR_SUPABASE_IMAGE_URL/brown-back.jpg',
+            'YOUR_SUPABASE_IMAGE_URL/brown-detail.jpg'
         ];
         let currentImgIndex = 0;
         let selectedSize = null;
