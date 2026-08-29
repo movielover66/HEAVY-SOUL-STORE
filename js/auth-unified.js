@@ -205,13 +205,6 @@ async function uHandleContinue() {
       document.getElementById("uAuthOtpField").style.display = "none";
       document.getElementById("uAuthVerifyOtpBtn").style.display = "none";
       uShowStep_("signup");
-      // Preload the MSG91 widget in the background as soon as we know
-      // OTP will likely be needed — by the time the user actually taps
-      // "Send OTP" (after typing name/password), the script has usually
-      // already finished loading, avoiding the first-click timeout.
-      if (parsed.type === "phone" && typeof hsLoadOtpScript === "function") {
-        hsLoadOtpScript().catch(() => {});
-      }
     }
   } catch (err) {
     uShowMsg_("সমস্যা হয়েছে, আবার চেষ্টা করুন।", true);
@@ -247,9 +240,6 @@ async function uHandleForgot() {
     _authFlowContext = "reset";
     _authResendCount = 0;
     uShowStep_("reset");
-    if (typeof hsLoadOtpScript === "function") {
-      hsLoadOtpScript().catch(() => {});
-    }
     return;
   }
   try {
@@ -385,7 +375,6 @@ async function uHandleVerifyOtp() {
   btn.textContent = "Verifying…";
   try {
     await hsVerifyOtp(otp);
-    // result arrives async via hs:otpVerified / hs:otpFailed (wired below)
   } catch (err) {
     btn.disabled = false;
     btn.textContent = "Verify OTP";
@@ -448,37 +437,30 @@ async function uHandleSignup() {
       provider: _authIdentifierType
     });
     await firebase.firestore().collection("accountIndex").doc(_authIdentifierKey).set({ uid: user.uid });
-    uShowMsg_("");
-    closeAuthModal();
-    if (typeof renderAccountState === "function") renderAccountState(user);
+    
+    uShowMsg_("Account সফলভাবে তৈরি হয়েছে!");
+    setTimeout(function() {
+      closeAuthModal();
+      if (typeof renderAccountState === "function") {
+        renderAccountState(user);
+      } else {
+        window.location.reload();
+      }
+    }, 1000);
+
   } catch (err) {
+    // যদি এই ইমেইল বা অ্যাকাউন্ট আগে থেকেই থাকে, তবে ইউজারকে সরাসরি Login পেজে নিয়ে যাবে
+    if (err && (err.code === 'auth/email-already-in-use' || err.message?.includes('already in use') || err.code === 'auth/account-exists-with-different-credential')) {
+      uShowMsg_("এই ইমেইল দিয়ে আগেই অ্যাকাউন্ট আছে। Log in করুন।", true);
+      document.getElementById("uAuthLoginLabel").textContent = _authIdentifierKey;
+      document.getElementById("uAuthForgotWrap").style.display = "block";
+      uShowStep_("login");
+      return;
+    }
     uShowMsg_(authErrorMessage ? authErrorMessage(err) : String(err), true);
   }
 }
-// ============================================================
-// CHECKOUT AUTH PROTECTION HELPER
-// ============================================================
-window.requireAuthThenGo = function(destinationUrl) {
-  // ফায়ারবেস থেকে কারেন্ট ইউজার চেক করা হচ্ছে
-  const currentUser = firebase && firebase.auth && firebase.auth().currentUser;
 
-  if (currentUser) {
-    // ইউজার অলরেডি লগইন করা থাকলে সরাসরি চেকআউট পেজে চলে যাবে
-    window.location.href = destinationUrl;
-  } else {
-    // ইউজার লগইন করা না থাকলে লগইন/সাইন-আপ মডালটি ওপেন করবে
-    if (typeof openAuthModal === "function") {
-      openAuthModal();
-      // আপনি চাইলে মডালের মেসেজ বক্সে ছোট একটি নোটিশও দেখাতে পারেন
-      if (typeof uShowMsg_ === "function") {
-        uShowMsg_("চেকআউট করার আগে অনুগ্রহ করে লগইন বা সাইন-আপ করুন।");
-      }
-    } else {
-      // যদি কোনো কারণে মডাল ফাংশন না পাওয়া যায়, সরাসরি লগইন পেজে রিডাইরেক্ট করবে
-      window.location.href = '/login?redirect=' + encodeURIComponent(destinationUrl);
-    }
-  }
-};
 async function uUpsertUserDoc_(uid, data) {
   try {
     await firebase.firestore().collection("users").doc(uid).set(
@@ -489,3 +471,23 @@ async function uUpsertUserDoc_(uid, data) {
     console.warn("Could not save user profile:", err);
   }
 }
+
+// ============================================================
+// CHECKOUT AUTH PROTECTION HELPER
+// ============================================================
+window.requireAuthThenGo = function(destinationUrl) {
+  const currentUser = firebase && firebase.auth && firebase.auth().currentUser;
+
+  if (currentUser) {
+    window.location.href = destinationUrl;
+  } else {
+    if (typeof openAuthModal === "function") {
+      openAuthModal();
+      if (typeof uShowMsg_ === "function") {
+        uShowMsg_("চেকআউট করার আগে অনুগ্রহ করে লগইন বা সাইন-আপ করুন।");
+      }
+    } else {
+      window.location.href = '/login?redirect=' + encodeURIComponent(destinationUrl);
+    }
+  }
+};
